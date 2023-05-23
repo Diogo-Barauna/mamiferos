@@ -15,24 +15,24 @@ interface Elefante {
 // Função de cadastro
 app.post('/reg', async (request: FastifyRequest <{ Body: Elefante }>, reply: FastifyReply) => {
 
-    const { nome, sexo, idade, saudavel } = request.body 
+  const { nome, sexo, idade, saudavel } = request.body 
 
-    try {
-      const elefante = await prisma.elefante.create({
-        data: {
-          nome,
-          sexo,
-          idade,
-          saudavel
-        },
-      });
+  try {
+    const elefante = await prisma.elefante.create({
+      data: {
+        nome,
+        sexo,
+        idade,
+        saudavel
+      },
+    });
 
-      return { message: 'Elefante cadastrado com sucesso!'};
+  return { message: 'Elefante cadastrado com sucesso!'};
 
-    } catch(error) {
-      reply.status(500).send({ error: 'Ocorreu um erro ao cadastrar o elefante.' });
-    }  
-  });
+  } catch(error) {
+    reply.status(500).send({ error: 'Ocorreu um erro ao cadastrar o elefante.' });
+  }  
+});
 
 // Função de delete
 app.delete('/del', async (request: FastifyRequest<{ Querystring: { nome: string } }>, reply: FastifyReply) => {
@@ -46,12 +46,12 @@ app.delete('/del', async (request: FastifyRequest<{ Querystring: { nome: string 
       }
     });
 
-    return { message: 'Elefante excluído com sucesso!' };
+  return { message: 'Elefante excluído com sucesso!' };
 
   } catch (error) {
     reply.status(500).send({ error: 'Ocorreu um erro ao excluir o elefante.' });
   }
-  });
+});
 // Função de atualização
 app.put('/upd/:nome', async (request: FastifyRequest<{ Params: { nome: string }, Body: Elefante }>, reply: FastifyReply) => {
 
@@ -70,12 +70,30 @@ app.put('/upd/:nome', async (request: FastifyRequest<{ Params: { nome: string },
       }
     });
   
-    return { message: 'Elefante atualizado com sucesso!'};
-    
-    } catch (error) {
-      reply.status(500).send({ error: 'Ocorreu um erro ao atualizar o elefante.' });
-    }
-  });
+  return { message: 'Elefante atualizado com sucesso!'};
+
+  } catch (error) {
+    reply.status(500).send({ error: 'Ocorreu um erro ao atualizar o elefante.' });
+  }
+});
+
+// Função de busca
+app.get('/search', async (request: FastifyRequest<{ Querystring: { nome: string } }>, reply: FastifyReply) => {
+  const { nome } = request.query;
+  
+  try {
+    const elefantes = await prisma.elefante.findMany({
+      where: {
+        nome: {
+           contains: nome
+        }
+      }
+    });
+    return { elefantes };
+  } catch (error) {
+    reply.status(500).send({ error: 'Ocorreu um erro ao pesquisar elefantes.' });
+  }
+});
   
 app.register(cors, {
   origin: "*",
