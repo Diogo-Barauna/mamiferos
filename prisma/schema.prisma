@@ -7,5 +7,12 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("postgresql://localhost:5432/mamiferos")
+  url      = env("DATABASE_URL")
+}
+
+model Elefante {
+  nome  String  @id
+  idade Int 
+  sexo  String
+  saudavel Boolean
 }
