@@ -28,6 +28,22 @@ app.post('/reg', async (request: FastifyRequest <{ Body: Elefante }>, reply: Fas
     return { message: 'Elefante cadastrado com sucesso!'};
   });
 
+  app.delete('/del', async (request: FastifyRequest<{ Querystring: { nome: string } }>, reply: FastifyReply) => {
+    const { nome } = request.query;
+  
+    try {
+      await prisma.elefante.deleteMany({
+        where: {
+          nome: nome
+        }
+      });
+
+      return { message: 'Elefante excluído com sucesso!' };
+    } catch (error) {
+      reply.status(500).send({ error: 'Ocorreu um erro ao excluir os elefantes.' });
+    }
+  });
+
   app.register(cors, {
     origin: "*",
   });
