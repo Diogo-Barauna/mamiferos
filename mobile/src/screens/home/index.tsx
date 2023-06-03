@@ -21,7 +21,7 @@ export default function App() {
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Edit")}>
               <Text style={styles.btnTxt}>Editar</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("Edit")} style={[styles.button, styles.deleteBtn]}>
+          <TouchableOpacity onPress={() => navigation.navigate("Delete")} style={[styles.button, styles.deleteBtn]}>
               <Text style={styles.deleteBtnTxt}>Deletar</Text>
           </TouchableOpacity>
         </View>
