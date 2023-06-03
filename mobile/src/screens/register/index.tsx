@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 
-const RegistroElefante = () => {
+export default function(){
   const [nome, setNome] = useState('');
   const [sexo, setSexo] = useState('');
   const [idade, setIdade] = useState('');
@@ -107,4 +107,4 @@ const RegistroElefante = () => {
   );
 };
 
-export default RegistroElefante;
+
