@@ -1,7 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function App() {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
         <Image 
@@ -10,16 +12,16 @@ export default function App() {
         />
         <Text style={styles.txtLogo}>Banco de elefantes</Text>
         <View style={styles.btns}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Register")}>
               <Text style={styles.btnTxt}>Cadastrar</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Search")}>
               <Text style={styles.btnTxt}>Pesquisar</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Edit")}>
               <Text style={styles.btnTxt}>Editar</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={[styles.button, styles.deleteBtn]}>
+          <TouchableOpacity onPress={() => navigation.navigate("Edit")} style={[styles.button, styles.deleteBtn]}>
               <Text style={styles.deleteBtnTxt}>Deletar</Text>
           </TouchableOpacity>
         </View>
