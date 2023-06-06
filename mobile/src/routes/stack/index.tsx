@@ -11,7 +11,7 @@ const { Navigator, Screen } = createNativeStackNavigator();
 
 export default function(){
     return(
-        <Navigator initialRouteName='Register' screenOptions={{headerShown: false}}>
+        <Navigator initialRouteName='Search' screenOptions={{headerShown: false}}>
             <Screen name='Home' component={Home} />
             <Screen name='Register' component={Register} />
             <Screen name='Delete' component={Delete} />

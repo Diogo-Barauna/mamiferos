@@ -22,7 +22,7 @@ export default function () {
       console.log(response.data.message);
       setShowPopup(true); // Exibir o popup ao cadastrar com sucesso
     } catch (error) {
-      console.error('Erro ao cadastrar elefante:', error);
+      alert('Erro ao cadastrar elefante');
     }
   };
 
