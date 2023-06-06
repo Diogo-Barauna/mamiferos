@@ -28,23 +28,25 @@ const PesquisarElefantes = () => {
   return (
     
     <View style={styles.container}>
-      <Text style={styles.label}>Nome:</Text>
-      <TextInput style={styles.input} value={nome} onChangeText={setNome} />
-        
-      <TouchableOpacity style={styles.button} onPress={pesquisarElefantes}>
-        <Text style={styles.btnTxt}>Pesquisar</Text>
-      </TouchableOpacity>
+        <Text style={styles.topTxt}>Insira o nome do elefante:</Text>
+      <View style={styles.main}> 
+        <Text style={styles.label}>Nome:</Text>
+        <TextInput style={styles.input} value={nome} onChangeText={setNome} />
+            
+        <TouchableOpacity style={styles.button} onPress={pesquisarElefantes}>
+            <Text style={styles.btnTxt}>Pesquisar</Text>
+        </TouchableOpacity>
 
-      <Text>Elefantes Encontrados:</Text>
-      {elefantes.map((elefante) => (
-        <View>
-        <Text key={elefante.nome}>Nome: {elefante.nome}</Text>
-        <Text key={elefante.sexo}>Sexo: {elefante.sexo}</Text>
-        <Text key={elefante.idade}>Idade: {elefante.idade}</Text>
-        <Text key={elefante.saudavel}>Saúdavel: {elefante.saudavel ? 'Sim' : 'Não'}</Text>
-
-        </View>
-      ))}
+        <Text style={styles.foundEl}>Elefantes Encontrados:</Text>
+        {elefantes.map((elefante) => (
+            <View style={styles.result}>
+                <Text style={styles.resultTxt} key={elefante.nome}>Nome: {elefante.nome}</Text>
+                <Text style={styles.resultTxt} key={elefante.sexo}>Sexo: {elefante.sexo}</Text>
+                <Text style={styles.resultTxt} key={elefante.idade}>Idade: {elefante.idade}</Text>
+                <Text style={styles.resultTxt} key={elefante.saudavel}>Saúdavel: {elefante.saudavel ? 'Sim' : 'Não'}</Text>
+            </View>
+        ))}
+      </View>
       <TouchableOpacity style={styles.homeBtn} onPress={() => navigation.navigate('Home')}>
         <Text style={styles.homeBtnTxt}>Início</Text>
       </TouchableOpacity>
@@ -63,6 +65,11 @@ const styles = StyleSheet.create({
       height: 667,
       width: 375,
     },
+    main:{ 
+      bottom: 55,  
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
     topTxt: {
       fontSize: 24,
       top: 40,
@@ -73,27 +80,23 @@ const styles = StyleSheet.create({
       fontFamily: 'Tahoma',
       marginTop: 30,
       padding: 7,
-      fontSize: 20,
+      fontSize: 30,
     },
     input: {
       backgroundColor: '#fff',
       paddingLeft: 10,
-      fontSize: 20,
-      height: 40,
-      width: 200,
+      fontSize: 30,
+      height: 50,
+      width: 210,
       borderRadius: 10,
       borderColor: '#000',
       borderWidth: 2,
     },
-    radioTxt: {
-      fontSize: 20,
-      paddingLeft: 10,
-    },
     button: {
       alignItems: 'center',
       justifyContent: 'center',
-      height: 50,
-      width: 190,
+      height: 60,
+      width: 200,
       borderRadius: 15,
       marginTop: 20,
       backgroundColor: '#0030D3',
@@ -102,6 +105,25 @@ const styles = StyleSheet.create({
       color: 'white',
       fontSize: 25,
       fontFamily: 'Tahoma',
+    },
+    foundEl:{
+        marginTop: 25,
+        fontSize: 25,
+        fontFamily: 'Tahoma'
+    },
+    result: {
+        backgroundColor:'#4E4E4E',
+        padding: 10,
+        marginTop: 20,
+        width: 200,
+        borderColor: '#1D1D1D',
+        borderWidth: 2,
+        borderRadius: 10
+    },
+    resultTxt:{
+        color: '#EEEEEE',
+        fontSize: 15,
+        fontFamily: 'Tahoma'
     },
     homeBtn: {
       position: 'absolute',
@@ -117,35 +139,6 @@ const styles = StyleSheet.create({
     homeBtnTxt: {
       color: 'white',
       fontSize: 20,
-      fontFamily: 'Tahoma',
-    },
-    modalContainer: {
-      flex: 1,
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    popupContainer: {
-      backgroundColor: '#fff',
-      padding: 20,
-      borderRadius: 10,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    popupText: {
-      fontSize: 18,
-      fontFamily: 'Tahoma',
-      marginBottom: 20,
-    },
-    closeButton: {
-      backgroundColor: '#0030D3',
-      paddingVertical: 10,
-      paddingHorizontal: 20,
-      borderRadius: 5,
-    },
-    closeButtonText: {
-      color: 'white',
-      fontSize: 16,
       fontFamily: 'Tahoma',
     },
   });
