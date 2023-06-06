@@ -8,7 +8,7 @@ import axios from 'axios';
 const PesquisarElefantes = () => {
   const [nome, setNome] = useState('');
   const [elefantes, setElefantes] = useState([]);
-
+  
   const pesquisarElefantes = async () => {
     try {
       const response = await axios.get('http://localhost:3333/search', {
@@ -16,28 +16,34 @@ const PesquisarElefantes = () => {
           nome: nome,
         },
       });
-
+      
       setElefantes(response.data.elefantes);
     } catch (error) {
-      alert('Erro ao pesquisar elefantes:');
+      alert('Erro ao pesquisar elefantes');
     }
   };
 
   const navigation = useNavigation();
-  
+
   return (
     
     <View style={styles.container}>
       <Text style={styles.label}>Nome:</Text>
       <TextInput style={styles.input} value={nome} onChangeText={setNome} />
-
+        
       <TouchableOpacity style={styles.button} onPress={pesquisarElefantes}>
         <Text style={styles.btnTxt}>Pesquisar</Text>
       </TouchableOpacity>
 
       <Text>Elefantes Encontrados:</Text>
       {elefantes.map((elefante) => (
-        <Text key={elefante.nome}>{elefante.nome}</Text>
+        <View>
+        <Text key={elefante.nome}>Nome: {elefante.nome}</Text>
+        <Text key={elefante.sexo}>Sexo: {elefante.sexo}</Text>
+        <Text key={elefante.idade}>Idade: {elefante.idade}</Text>
+        <Text key={elefante.saudavel}>Saúdavel: {elefante.saudavel ? 'Sim' : 'Não'}</Text>
+
+        </View>
       ))}
       <TouchableOpacity style={styles.homeBtn} onPress={() => navigation.navigate('Home')}>
         <Text style={styles.homeBtnTxt}>Início</Text>
@@ -46,6 +52,7 @@ const PesquisarElefantes = () => {
     
   );
 };
+
 
 const styles = StyleSheet.create({
     container: {
